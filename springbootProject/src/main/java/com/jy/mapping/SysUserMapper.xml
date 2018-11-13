@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jy.mapper.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.jy.model.SysUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="LOGIN_ACCOUNT" property="loginAccount" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SALT" property="salt" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="USER_TYPE" property="userType" jdbcType="VARCHAR" />
+    <result column="CERTIFICATE_NUMBER" property="certificateNumber" jdbcType="VARCHAR" />
+    <result column="CERTIFICATE_TYPE" property="certificateType" jdbcType="VARCHAR" />
+    <result column="REGION_ID" property="regionId" jdbcType="VARCHAR" />
+    <result column="REGION_NAME" property="regionName" jdbcType="VARCHAR" />
+    <result column="EXT_PRO" property="extPro" jdbcType="VARCHAR" />
+    <result column="DEL_FLAG" property="delFlag" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="HEAD" property="head" jdbcType="VARCHAR" />
+    <result column="LINK_OUT_DATE" property="linkOutDate" jdbcType="BIGINT" />
+    <result column="POST_TYPE" property="postType" jdbcType="CHAR" />
+    <result column="CODE_FILE_NAME" property="codeFileName" jdbcType="VARCHAR" />
+    <result column="good_domain" property="goodDomain" jdbcType="VARCHAR" />
+    <result column="JOB_NUMBER" property="jobNumber" jdbcType="VARCHAR" />
+    <result column="INSURANCE_COMPANY" property="insuranceCompany" jdbcType="VARCHAR" />
+    <result column="IS_LOCK" property="isLock" jdbcType="VARCHAR" />
+    <result column="PERSON_TYPE" property="personType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, LOGIN_ACCOUNT, PASSWORD, NAME, SALT, MOBILE, EMAIL, USER_TYPE, CERTIFICATE_NUMBER, 
+    CERTIFICATE_TYPE, REGION_ID, REGION_NAME, EXT_PRO, DEL_FLAG, CREATE_DATE, HEAD, LINK_OUT_DATE, 
+    POST_TYPE, CODE_FILE_NAME, good_domain, JOB_NUMBER, INSURANCE_COMPANY, IS_LOCK, PERSON_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jy.model.SysUser" >
+    insert into sys_user (id, LOGIN_ACCOUNT, PASSWORD, 
+      NAME, SALT, MOBILE, 
+      EMAIL, USER_TYPE, CERTIFICATE_NUMBER, 
+      CERTIFICATE_TYPE, REGION_ID, REGION_NAME, 
+      EXT_PRO, DEL_FLAG, CREATE_DATE, 
+      HEAD, LINK_OUT_DATE, POST_TYPE, 
+      CODE_FILE_NAME, good_domain, JOB_NUMBER, 
+      INSURANCE_COMPANY, IS_LOCK, PERSON_TYPE
+      )
+    values (#{id,jdbcType=INTEGER}, #{loginAccount,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, #{certificateNumber,jdbcType=VARCHAR}, 
+      #{certificateType,jdbcType=VARCHAR}, #{regionId,jdbcType=VARCHAR}, #{regionName,jdbcType=VARCHAR}, 
+      #{extPro,jdbcType=VARCHAR}, #{delFlag,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{head,jdbcType=VARCHAR}, #{linkOutDate,jdbcType=BIGINT}, #{postType,jdbcType=CHAR}, 
+      #{codeFileName,jdbcType=VARCHAR}, #{goodDomain,jdbcType=VARCHAR}, #{jobNumber,jdbcType=VARCHAR}, 
+      #{insuranceCompany,jdbcType=VARCHAR}, #{isLock,jdbcType=VARCHAR}, #{personType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jy.model.SysUser" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginAccount != null" >
+        LOGIN_ACCOUNT,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="salt != null" >
+        SALT,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="userType != null" >
+        USER_TYPE,
+      </if>
+      <if test="certificateNumber != null" >
+        CERTIFICATE_NUMBER,
+      </if>
+      <if test="certificateType != null" >
+        CERTIFICATE_TYPE,
+      </if>
+      <if test="regionId != null" >
+        REGION_ID,
+      </if>
+      <if test="regionName != null" >
+        REGION_NAME,
+      </if>
+      <if test="extPro != null" >
+        EXT_PRO,
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="head != null" >
+        HEAD,
+      </if>
+      <if test="linkOutDate != null" >
+        LINK_OUT_DATE,
+      </if>
+      <if test="postType != null" >
+        POST_TYPE,
+      </if>
+      <if test="codeFileName != null" >
+        CODE_FILE_NAME,
+      </if>
+      <if test="goodDomain != null" >
+        good_domain,
+      </if>
+      <if test="jobNumber != null" >
+        JOB_NUMBER,
+      </if>
+      <if test="insuranceCompany != null" >
+        INSURANCE_COMPANY,
+      </if>
+      <if test="isLock != null" >
+        IS_LOCK,
+      </if>
+      <if test="personType != null" >
+        PERSON_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginAccount != null" >
+        #{loginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateNumber != null" >
+        #{certificateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null" >
+        #{certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="regionId != null" >
+        #{regionId,jdbcType=VARCHAR},
+      </if>
+      <if test="regionName != null" >
+        #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="extPro != null" >
+        #{extPro,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="head != null" >
+        #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="linkOutDate != null" >
+        #{linkOutDate,jdbcType=BIGINT},
+      </if>
+      <if test="postType != null" >
+        #{postType,jdbcType=CHAR},
+      </if>
+      <if test="codeFileName != null" >
+        #{codeFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodDomain != null" >
+        #{goodDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="jobNumber != null" >
+        #{jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompany != null" >
+        #{insuranceCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="isLock != null" >
+        #{isLock,jdbcType=VARCHAR},
+      </if>
+      <if test="personType != null" >
+        #{personType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jy.model.SysUser" >
+    update sys_user
+    <set >
+      <if test="loginAccount != null" >
+        LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        USER_TYPE = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateNumber != null" >
+        CERTIFICATE_NUMBER = #{certificateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null" >
+        CERTIFICATE_TYPE = #{certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="regionId != null" >
+        REGION_ID = #{regionId,jdbcType=VARCHAR},
+      </if>
+      <if test="regionName != null" >
+        REGION_NAME = #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="extPro != null" >
+        EXT_PRO = #{extPro,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG = #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="head != null" >
+        HEAD = #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="linkOutDate != null" >
+        LINK_OUT_DATE = #{linkOutDate,jdbcType=BIGINT},
+      </if>
+      <if test="postType != null" >
+        POST_TYPE = #{postType,jdbcType=CHAR},
+      </if>
+      <if test="codeFileName != null" >
+        CODE_FILE_NAME = #{codeFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodDomain != null" >
+        good_domain = #{goodDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="jobNumber != null" >
+        JOB_NUMBER = #{jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceCompany != null" >
+        INSURANCE_COMPANY = #{insuranceCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="isLock != null" >
+        IS_LOCK = #{isLock,jdbcType=VARCHAR},
+      </if>
+      <if test="personType != null" >
+        PERSON_TYPE = #{personType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jy.model.SysUser" >
+    update sys_user
+    set LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      SALT = #{salt,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      USER_TYPE = #{userType,jdbcType=VARCHAR},
+      CERTIFICATE_NUMBER = #{certificateNumber,jdbcType=VARCHAR},
+      CERTIFICATE_TYPE = #{certificateType,jdbcType=VARCHAR},
+      REGION_ID = #{regionId,jdbcType=VARCHAR},
+      REGION_NAME = #{regionName,jdbcType=VARCHAR},
+      EXT_PRO = #{extPro,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      HEAD = #{head,jdbcType=VARCHAR},
+      LINK_OUT_DATE = #{linkOutDate,jdbcType=BIGINT},
+      POST_TYPE = #{postType,jdbcType=CHAR},
+      CODE_FILE_NAME = #{codeFileName,jdbcType=VARCHAR},
+      good_domain = #{goodDomain,jdbcType=VARCHAR},
+      JOB_NUMBER = #{jobNumber,jdbcType=VARCHAR},
+      INSURANCE_COMPANY = #{insuranceCompany,jdbcType=VARCHAR},
+      IS_LOCK = #{isLock,jdbcType=VARCHAR},
+      PERSON_TYPE = #{personType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
