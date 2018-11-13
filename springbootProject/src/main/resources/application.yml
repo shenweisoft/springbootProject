@@ -58,3 +58,7 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+redisConfig:
+  #单位分钟
+  SSO_SESSION_EXPIRE: 30
+  REDIS_USER_SESSION_KEY: REDIS_USER_SESSION

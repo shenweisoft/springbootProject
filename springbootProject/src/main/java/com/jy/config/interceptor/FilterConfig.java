@@ -17,8 +17,8 @@ public class FilterConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        //registry.addInterceptor(authorizationInterceptor);
-        registry.addInterceptor(authorizationInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(authorizationInterceptor).addPathPatterns("/**")
+                .excludePathPatterns("/system/login");
         super.addInterceptors(registry);
     }
 }

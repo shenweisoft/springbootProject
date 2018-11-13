@@ -315,4 +315,17 @@
       PERSON_TYPE = #{personType,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="querySysUser" resultMap="BaseResultMap" parameterType="com.jy.vo.SysUserVO" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where  DEL_FLAG='0'
+    <if test="loginAccount != null" >
+     and LOGIN_ACCOUNT = #{loginAccount,jdbcType=INTEGER}
+    </if>
+
+  </select>
+
 </mapper>

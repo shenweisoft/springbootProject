@@ -5,14 +5,15 @@ import com.jy.common.ResultCode;
 import com.jy.config.redis.RedisUtils;
 import com.jy.model.SysUser;
 import com.jy.service.UserService;
+import com.jy.vo.SysUserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping(value = "/system")
@@ -45,7 +46,8 @@ public class SystemController {
            SysUser sysUser1 = (SysUser) redisUtils.get("shenwei");System.out.println(sysUser1);
 
         } catch (Exception e) {
-            logger.error("ERROR in queryFilingInfo: ", e);
+            logger.error("ERROR in add: ", e);
+            e.printStackTrace();
             result.setResultCode(ResultCode.ERROR);
         }
         return result;
@@ -65,19 +67,21 @@ public class SystemController {
         return result;
     }
 
+    /**
+     * 用户登录
+     * @param sysUserVO
+     * @param request
+     * @param response
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public JsonResult<Object> login(@RequestBody SysUser sysUser){
+    public JsonResult<Object> login(@RequestBody SysUserVO sysUserVO, HttpServletRequest request, HttpServletResponse response){
 
         JsonResult<Object> result = new JsonResult<Object>();
 
         try {
-            
-
-
-
-            System.out.println(sysUser);
-
+            result = userService.login(sysUserVO,result,request,response);
         } catch (Exception e) {
             e.printStackTrace();
             result.setResultCode(ResultCode.ERROR);
@@ -85,6 +89,43 @@ public class SystemController {
         return result;
     }
 
+    /**
+     * 用户退出
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public JsonResult<Object> logout(HttpServletRequest request) {
+
+        JsonResult<Object> result = new JsonResult<Object>();
+
+        try {
+            userService.logout(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.setResultCode(ResultCode.ERROR);
+        }
+        return result;
+    }
+
+    /**
+     * 获取token
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/getUserByToken", method = RequestMethod.POST)
+    public JsonResult<Object> getUserByToken(HttpServletRequest request) {
+
+        JsonResult<Object> result = new JsonResult<Object>();
+        try {
+            result = userService.queryUserByToken(request,result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.setResultCode(ResultCode.ERROR);
+        }
+        return result;
+    }
 }
 
 
