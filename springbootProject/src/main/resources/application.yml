@@ -1,5 +1,6 @@
 server:
   port: 8080
+  context-path: /lawProject
 
 spring:
   datasource:
@@ -62,3 +63,14 @@ redisConfig:
   #单位分钟
   SSO_SESSION_EXPIRE: 30
   REDIS_USER_SESSION_KEY: REDIS_USER_SESSION
+#配置日志
+logging:
+  #配置日志文件路径
+  path: /Users/shenwei/springbootDir/log
+  level:
+    #不同目录下的日志可配置不同级别
+    com.jy: warn
+socketConfig:
+  macAddress: 127.0.0.1
+  realAddress: 127.0.0.1
+  port: 9999

@@ -27,13 +27,13 @@ public class SystemController {
     private RedisUtils redisUtils;
 
     @ResponseBody
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/addRedis", method = RequestMethod.POST)
     public JsonResult<Object> addUser(@RequestBody SysUser sysUser){
 
         JsonResult<Object> result = new JsonResult<Object>();
         try {
             //插入数据
-           userService.insertSysUser(sysUser);
+           //userService.insertSysUser(sysUser);
 
            result.setResult(sysUser);
 
